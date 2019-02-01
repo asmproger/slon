@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if category %}
+        <div>
+            {% include 'main/breadcrumbs.html.twig' with {node: category} %}
+        </div>
+
+        <h3>{{ category.title }}</h3>
+        <p>{{ category.description }}</p>
+        <br>
+        <div>
+            {% if productsLinks | length %}
+                {% for link in productsLinks %}
+                    {% set product = link.product %}
+                    <h3>
+                        <a href="{{ path }}/{{ product.code }}">
+                            {{ product.title }}
+                        </a>
+                    </h3>
+                    <span>{{ product.price }} р.</span>
+                    <p>{{ product.description }}</p>
+                {% endfor %}
+            {% elseif subs | length %}
+                <ul>
+                {% for sub in subs %}
+                    <li>
+                        <a href="{{ path }}/{{ sub.code }}">
+                            {{ sub.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% else %}
+        <h4>Нет такой категории</h4>
+    {% endif %}
+{% endblock %}

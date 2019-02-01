@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if product %}
+        <div>
+            {% include 'main/breadcrumbs.html.twig' with {node: product} %}
+        </div>
+
+        <h3>{{ product.title }}</h3>
+        <span>{{ product.price }} р.</span>
+        <p>{{ product.description }}</p>
+    {% else %}
+        <h4>Нет такого продукта</h4>
+    {% endif %}
+{% endblock %}

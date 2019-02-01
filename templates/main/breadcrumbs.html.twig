@@ -1,0 +1,22 @@
+<style>
+    .breadcrumbs li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+</style>
+<ul class="breadcrumbs">
+    {% set path = "" %}
+    {% for crumb in crumbs %}
+        {% set path = path ~ "/" ~ crumb.code %}
+        <li>
+            <a href="{{ path }}">
+                {{ crumb.title }}
+            </a>
+        </li>
+    {% endfor %}
+    <li>
+        <a href="{{ path }}/{{ node.code }}">
+            {{ node.title }}
+        </a>
+    </li>
+</ul>
